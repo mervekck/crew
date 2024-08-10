@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Crew } from '../models/crew.model';
 import { CrewService } from '../services/crew.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-crew-card-page',
@@ -14,9 +15,12 @@ export class CrewCardPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private crewService: CrewService,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
-
+  goBack(): void {
+    this.location.back();
+  }
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const idParam = params.get('id'); // URL'den 'id' parametresini al
